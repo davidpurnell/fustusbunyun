@@ -1,0 +1,224 @@
+.bunny-hutch {
+  display: none;
+  overflow: hidden;
+  padding-top: 100px;
+  font-size: $font-size-base;
+  line-height: $line-height-text;
+
+  @media(min-width:768px) {
+    display: block;
+  }
+}
+
+.bunny {
+  width: 5em;
+  height: 3em;
+  background: $brown;
+  border-radius: 70% 90% 60% 50%;
+  position: relative;
+  box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  transform: translate(-5em, 0);
+  animation: hop 8s 2s linear forwards;
+  z-index: 1;
+}
+.bunny:before {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background: $brown;
+  border-radius: 100%;
+  top: 0.5em;
+  left: -0.3em;
+  box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1em 0 $brown, 4em 1em 0 -0.3em $brown, 4em 1em 0 -0.3em $brown, 4em 1em 0 -0.4em $brown;
+  animation: kick 8s 2s linear forwards;
+}
+.bunny:after {
+  content: "";
+  position: absolute;
+  width: .75em;
+  height: 2em;
+  background: $brown;
+  border-radius: 50% 100% 0 0;
+  transform: rotate(-30deg);
+  right: 1em;
+  top: -1em;
+  border-top: 1px solid $brown;
+  border-left: 1px solid $brown;
+  box-shadow: -0.5em 0em 0 -0.1em $brown;
+}
+
+@keyframes hop {
+  //first hop
+  4% {
+    @include bunny-hop(-10deg,3.5vw,-2em);
+    //transform: rotate($rotate) translate($transformX, $transformY);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  8% {
+    @include bunny-hop(10deg,10.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  12% {
+    @include bunny-hop(0,14vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //second hop
+  16% {
+    @include bunny-hop(-10deg,17.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  20% {
+    @include bunny-hop(10deg,24.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  24% {
+    @include bunny-hop(0,28vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //third hop
+  28% {
+    @include bunny-hop(-10deg,31.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  32% {
+    @include bunny-hop(10deg,38.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  36% {
+    @include bunny-hop(0,42vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //fourth hop
+  40% {
+    @include bunny-hop(-10deg,45.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  44% {
+    @include bunny-hop(10deg,52.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  48% {
+    @include bunny-hop(0,56vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //fifth hop
+  52% {
+    @include bunny-hop(-10deg,59.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  56% {
+    @include bunny-hop(10deg,66.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  60% {
+    @include bunny-hop(0,70vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //sixth hop
+  64% {
+    @include bunny-hop(-10deg,73.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  68% {
+    @include bunny-hop(10deg,80.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  72% {
+    @include bunny-hop(0,84vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //seventh hop
+  76% {
+    @include bunny-hop(-10deg,87.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  80% {
+    @include bunny-hop(10deg,94.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  84% {
+    @include bunny-hop(0,98vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //eighth hop
+  88% {
+    @include bunny-hop(-10deg,101.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+  92% {
+    @include bunny-hop(10deg,108.5vw,-4em);
+    box-shadow: -0.2em 3.25em 0 -1.1em $shadow;
+  }
+  96% {
+    @include bunny-hop(0,112vw,0);
+    box-shadow: -0.2em 1em 0 -0.75em $shadow;
+  }
+  //ninth hop (partial)
+  100% {
+    @include bunny-hop(-10deg,115.5vw,-2em);
+    box-shadow: -0.2em 3em 0 -1em $shadow;
+  }
+}
+@keyframes kick {
+  //first hop
+  4%,10% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  8% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //second hop
+  16%,22% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  20% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //third hop
+  28%,34% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  32% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //fourth hop
+  40%,42% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  44% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //fifth hop
+  52%,58% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  56% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //sixth hop
+  64%,70% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  68% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //seventh hop
+  76%,82% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  80% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //eigth hop
+  88%,94% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+  92% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 2em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4.2em 1.75em 0 -0.2em $brown, 4.4em 1.9em 0 -0.2em $brown;
+  }
+  //ninth hop (partial)
+  100% {
+    box-shadow: 4em 0.4em 0 -0.35em $eyeball, 0.5em 1.5em 0 $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.75em 0 -0.3em $brown, 4em 1.9em 0 -0.4em $brown;
+  }
+}

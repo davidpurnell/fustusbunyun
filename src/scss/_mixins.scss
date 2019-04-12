@@ -1,0 +1,33 @@
+// Mixins
+// Background Cover Mixin
+@mixin background-cover {
+  background-size: contain, cover;
+}
+
+// Font Mixins
+@mixin regular-font {
+  font-family: 'Poppins', sans-serif;
+  //font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@mixin light-font {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+@mixin bold-font {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+//bunny hop
+@mixin bunny-hop($rotate,$transformX,$transformY) {
+  transform-origin: $transformX $transformY;
+  transform: rotate($rotate) translate($transformX, $transformY);
+}
+
+@mixin bunny-delay($delay) {
+  animation-delay: $delay;
+}

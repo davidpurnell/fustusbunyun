@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $white;
+  color: $green;
+  @include light-font;
+  // font grows 1px for every 100px of viewport width
+  font-size: calc(12px + 0.5vw);
+  // leading grows along with font,
+  // with an additional 0.1em + 0.5px per 100px of the viewport
+  line-height: calc(1.1em + 0.5vw);
+}
+
+.container {
+  //margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  padding-bottom: 30vh;
+  margin-top: 5vh;
+  background-image: url('/fustus.svg');
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: contain, cover;
+  @media(min-width:480px) {
+    padding-bottom: 40vh;
+    //margin-top: 5vh;
+    background-image: url('/fustus2.svg');
+  }
+  @media(min-width:768px) {
+    padding-bottom: 25vh;
+    //margin-top: 5vh;
+    background-image: url('/fustus3.svg');
+  }
+}
+.intro {
+  width: 75%;
+  padding-bottom: 1em;
+  text-align: center;
+  @media(min-width:576px) {
+    width: 40%;
+    padding-bottom: 3em;
+  }
+}
+
+header {
+  //flex: auto;
+  flex: 1 1 auto;
+}
+
+main {
+  //flex: auto;
+  flex: 1 1 auto;
+}
+
+footer {
+  //flex: none;
+  flex: 0 0 auto;
+  padding-bottom: 25px;
+  .social {
+    display: flex;
+    align-items: center;
+    > div {
+      //margin: 0 5em;
+      padding: 1em 2em;
+    }
+  }
+  span.copyright {
+    font-size: 90%;
+    line-height: 40px;
+  }
+  & svg {
+    height: auto;
+    width: 20vw;
+    max-width: 80px;
+    fill: $green;
+    &:hover {
+      fill: $gray-500;
+    }
+    @media(min-width:576px) {
+      width: 10vw;
+      max-width: 100px;
+    }
+  }
+}
+/*
+@media(min-height:900px) {
+  footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    margin: auto;
+  }
+}
+*/
+//typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 $spacing;
+  @include light-font;
+}

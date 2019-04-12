@@ -1,0 +1,69 @@
+// Variables
+
+// Restated Bootstrap Variables
+$black: #000 !default;
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+// Custom colors
+$brown: #d5b181;
+$almostblack: #0b1016 !default;
+$almostwhite: #f6faff !default;
+$almostwhite2: #fafaf5 !default;
+$green: #17c671;
+$red: #c4183c;
+$pale-blue: #8db5de;
+//$blue: #007bff;
+$blue: #2b90d9;
+$corn-yellow: #fed136;
+$charcoal: #2c4159;
+
+$green: #73993e;
+
+$shadow: $gray-400;
+$eyeball: $black;
+
+$color-primary: $corn-yellow;
+$color-secondary: $gray-500;
+
+$color-background: $white;
+$color-links: $charcoal;
+$color-links-accent: #ba0d37;
+
+$color-valid: $green;
+$color-invalid: $red;
+
+//mastadon color scheme
+$dark-background: #16191f;
+$less-dark-background: #1f232b;
+$darkish-gray: #282c37;
+$paleish-blue: #9baec8;
+$off-white: #d9e1e8;
+$bluish-blue: #2b90d9;
+
+//typography & spacing
+$font-size-base:       1rem !default;
+
+$font-size-xx-large: 7vmin;
+//$font-size-xx-large: 3.2rem;
+$font-size-x-large: 2.7rem;
+$font-size-large: 1.8rem;
+$font-size-medium: 1.4rem;
+$font-size: 1.125rem;
+$font-size-small: 1rem;
+$font-size-x-small: .8rem;
+
+$line-height-text:     1.5;
+$line-height-heading:  1.3;
+
+$spacing: .75rem;
+$spacing-medium: 1rem;
+$spacing-large: 1.5rem;
+$spacing-x-large: 2rem;
