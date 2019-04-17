@@ -23,27 +23,27 @@ body {
 .logo {
   padding-bottom: 30vh;
   margin-top: 5vh;
-  background-image: url('/fustus.svg');
+  background-image: url("/img/fustus.svg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: contain, cover;
-  @media(min-width:480px) {
+  @media (min-width: 480px) {
     padding-bottom: 40vh;
     //margin-top: 5vh;
-    background-image: url('/fustus2.svg');
+    background-image: url("/img/fustus2.svg");
   }
-  @media(min-width:768px) {
+  @media (min-width: 768px) {
     padding-bottom: 25vh;
     //margin-top: 5vh;
-    background-image: url('/fustus3.svg');
+    background-image: url("/img/fustus3.svg");
   }
 }
 .intro {
   width: 75%;
   padding-bottom: 1em;
   text-align: center;
-  @media(min-width:576px) {
+  @media (min-width: 576px) {
     width: 40%;
     padding-bottom: 3em;
   }
@@ -83,7 +83,7 @@ footer {
     &:hover {
       fill: $gray-500;
     }
-    @media(min-width:576px) {
+    @media (min-width: 576px) {
       width: 10vw;
       max-width: 100px;
     }
