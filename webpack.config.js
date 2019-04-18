@@ -11,24 +11,18 @@ const PATHS = {
 
 const commonConfig = merge([
   {
-    entry: PATHS.app + "/affable.js",
+    entry: PATHS.app + "/fustus.js",
     output: {
       path: PATHS.build,
       chunkFilename: "[name].[chunkhash:4].js",
       filename: "[name].[chunkhash:4].js"
-    },
-    resolve: {
-      extensions: [".js"],
-      alias: {
-        jquery: "jquery/dist/jquery.js"
-      }
     }
   }
 ]);
 
 const productionConfig = merge([
   parts.clean(),
-  parts.extractCSS({ html: PATHS.app + "/index.ejs" }),
+  parts.extractCSS(),
   parts.loadJavaScript({ include: PATHS.app }),
   parts.minifyJavaScript(),
   parts.loadImages({

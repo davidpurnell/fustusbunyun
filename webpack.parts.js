@@ -53,37 +53,11 @@ exports.loadCSS = () => ({
   }
 });
 
-exports.extractCSS = ({ html }) => {
+exports.extractCSS = () => {
   // Output extracted CSS to a file
   const plugin = new MiniCssExtractPlugin({
     filename: "[name].[contenthash:4].css"
   });
-
-  const ignores = [
-    //affable atom specific
-    /#mainNav.*/,
-    // /.+\.testing/,
-    ".fadeIn",
-    ".fadeOut",
-    //bootstrap specific
-    /\.alert.*/,
-    /\.fade.*/,
-    /.*close.*/,
-    /.*collaps.*/,
-    // /\..*popover.*/,
-    // /\..*tooltip.*/,
-    /\..*modal.*/,
-    // /\.*carousel.*/,
-    // /\.active\.carousel.*/,
-    // /\.collaps/,
-    // /\.fade/,
-    /\.show/,
-    /(#|\.)navbar(\-[a-zA-Z]+)?/,
-    // /(#|\.)dropdown(\-[a-zA-Z]+)?/,
-    /(#|\.)(open)/,
-    // /.*h\d/,
-    /.*valid.*/
-  ];
 
   return {
     module: {
@@ -99,14 +73,7 @@ exports.extractCSS = ({ html }) => {
               loader: "postcss-loader",
               options: {
                 ident: "postcss",
-                plugins: [
-                  require("cssnano"),
-                  require("autoprefixer"),
-                  require("postcss-uncss")({
-                    html,
-                    ignore: ignores
-                  })
-                ]
+                plugins: [require("cssnano"), require("autoprefixer")]
               }
             },
             { loader: "sass-loader" }
@@ -186,14 +153,14 @@ exports.analyze = () => ({
 exports.buildPage = (PATHS, isDevelopment) => ({
   plugins: [
     new HtmlWebpackPlugin({
-      template: PATHS.app + "/index.ejs",
+      template: PATHS.app + "/index.html",
       filename: "index.html",
       env: {
         Dev: isDevelopment
       }
     }),
     new WebappWebpackPlugin({
-      logo: PATHS.app + "/img/logo.svg",
+      logo: PATHS.app + "/img/FustusBunyun_icon.png",
       prefix: ".",
       cache: true,
       favicons: {
