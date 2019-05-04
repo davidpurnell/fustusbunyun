@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
@@ -184,5 +185,11 @@ exports.buildPage = (PATHS, isDevelopment) => ({
         }
       }
     })
+  ]
+});
+
+exports.cpNetlify = PATHS => ({
+  plugins: [
+    new CopyWebpackPlugin([{ from: PATHS.app + "/netlify", to: PATHS.build }])
   ]
 });
