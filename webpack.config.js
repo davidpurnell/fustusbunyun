@@ -1,12 +1,13 @@
-const webpack = require("webpack");
-const merge = require("webpack-merge");
+//const webpack = require("webpack");
 const path = require("path");
+const { mode } = require("webpack-nano/argv");
+const { merge } = require("webpack-merge");
 
 const parts = require("./webpack.parts.js");
 
 const PATHS = {
   app: path.join(__dirname, "src"),
-  build: path.join(__dirname, "dist")
+  build: path.join(__dirname, "dist"),
 };
 
 const commonConfig = merge([
@@ -15,71 +16,50 @@ const commonConfig = merge([
     output: {
       path: PATHS.build,
       chunkFilename: "[name].[chunkhash:4].js",
-      filename: "[name].[chunkhash:4].js"
-    }
-  }
+      filename: "[name].[chunkhash:4].js",
+    },
+  },
 ]);
 
 const productionConfig = merge([
   parts.clean(),
   parts.extractCSS(),
-  parts.loadJavaScript({ include: PATHS.app }),
-  parts.minifyJavaScript(),
   parts.loadImages({
+    limit: 10000,
     options: {
-      plugins: [
-        require("imagemin-jpegtran")({
-          progressive: true,
-          arithmetic: false
-        }),
-        require("imagemin-gifsicle")({
-          interlaced: true,
-          optimizationLevel: 2
-        }),
-        require("imagemin-svgo")({
-          plugins: [
-            { removeViewBox: true },
-            { removeTitle: true },
-            { convertPathData: false },
-            { cleanupIDs: false }
-          ]
-        }),
-        require("imagemin-optipng")({
-          optimizationLevel: 5,
-          bitDepthReduction: true,
-          colorTypeReduction: true,
-          paletteReduction: true
-        })
-      ]
-    }
+      svgo: {
+        removeViewBox: true,
+        removeTitle: true,
+        convertPathData: false,
+        cleanupIDs: false,
+      },
+    },
   }),
   parts.buildPage(PATHS),
-  parts.cpNetlify(PATHS)
+  parts.cpNetlify(PATHS),
 ]);
 
 const developmentConfig = merge([
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
-    port: process.env.PORT
+    port: process.env.PORT,
+    PATHS
   }),
   parts.loadCSS(),
-  parts.loadImages(),
-  parts.buildPage(PATHS, true)
-  // parts.attachRevision()
+  parts.loadImages({ limit: 10000 }),
+  parts.buildPage(PATHS),
 ]);
 
-const analyzeConfig = merge([parts.analyze()]);
-
-module.exports = env => {
-  const mode = env.development ? "development" : "production";
-  console.log(mode + " mode");
-  env.analyze ? console.log("bundle analysis generated\n\n") : false;
-
-  const config = env.development ? developmentConfig : productionConfig;
-  const theMerged = env.analyze
-    ? merge(commonConfig, analyzeConfig, config, { mode })
-    : merge(commonConfig, config, { mode });
-
-  return theMerged;
+const getConfig = (mode) => {
+  switch (mode) {
+    case "production":
+      return merge(commonConfig, productionConfig, { mode });
+    case "development":
+      return merge(commonConfig, developmentConfig, { mode });
+    default:
+      throw new Error(`Trying to use an unknown mode, ${mode}`);
+  }
 };
+
+module.exports = getConfig(mode);

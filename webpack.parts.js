@@ -1,36 +1,32 @@
-// const webpack = require("webpack");
+//
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 
-exports.clean = path => ({
-  plugins: [new CleanWebpackPlugin()]
+exports.clean = (path) => ({
+  plugins: [new CleanWebpackPlugin()],
 });
 
-// exports.attachRevision = () => ({
-//   plugins: [
-//     new webpack.BannerPlugin({
-//       banner: new GitRevisionPlugin().version()
-//     })
-//   ]
-// });
-
-exports.devServer = ({ host, port } = {}) => ({
+exports.devServer = ({ host, port, PATHS } = {}) => ({
   devServer: {
-    stats: "errors-only",
     host, // Defaults to `localhost`
     port, // Defaults to 8080
-    //open: "Google Chrome",
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  }
+    watchFiles: PATHS.app + "/index.html",
+    open: {
+      app: {
+        name: "Google Chrome",
+      },
+    },
+    client: {
+      progress: true,
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
+    },
+  },
 });
 
 exports.loadCSS = () => ({
@@ -42,22 +38,22 @@ exports.loadCSS = () => ({
           { loader: "style-loader" },
           {
             loader: "css-loader",
-            options: { sourceMap: true }
+            options: { sourceMap: true },
           },
           {
             loader: "sass-loader",
-            options: { sourceMap: true }
-          }
-        ]
-      }
-    ]
-  }
+            options: { sourceMap: true },
+          },
+        ],
+      },
+    ],
+  },
 });
 
 exports.extractCSS = () => {
   // Output extracted CSS to a file
   const plugin = new MiniCssExtractPlugin({
-    filename: "[name].[contenthash:4].css"
+    filename: "[name].[contenthash:4].css",
   });
 
   return {
@@ -68,99 +64,48 @@ exports.extractCSS = () => {
           use: [
             MiniCssExtractPlugin.loader,
             {
-              loader: "css-loader"
+              loader: "css-loader",
             },
             {
               loader: "postcss-loader",
               options: {
-                ident: "postcss",
-                plugins: [require("cssnano"), require("autoprefixer")]
-              }
+                postcssOptions: { plugins: [require("autoprefixer")] },
+              },
             },
-            { loader: "sass-loader" }
-          ]
-        }
-      ]
+            { loader: "sass-loader" },
+          ],
+        },
+      ],
     },
-    plugins: [plugin]
+    plugins: [plugin],
   };
 };
 
-exports.loadImages = ({ options } = {}) => ({
+exports.loadImages = ({ limit, options } = {}) => ({
   module: {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset",
+        parser: { dataUrlCondition: { maxSize: limit } },
         use: [
-          {
-            loader: "url-loader",
-            options: {
-              // name: "[name].[ext]",
-              name: "[name].[hash:4].[ext]",
-              limit: 10000
-            }
-          },
           {
             loader: "img-loader",
             options
           }
         ]
-      }
-    ]
-  }
+      },
+    ],
+  },
 });
 
-exports.loadJavaScript = ({ include }) => ({
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
-  }
-});
-
-exports.minifyJavaScript = () => ({
-  optimization: {
-    splitChunks: {
-      chunks: "initial"
-    },
-    // minimize: false,
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
-        terserOptions: {
-          warnings: false
-        }
-      })
-    ]
-  }
-});
-
-exports.analyze = () => ({
-  plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: "static",
-      reportFilename: "../bundle-analysis.html",
-      openAnalyzer: false
-    })
-  ]
-});
 exports.buildPage = (PATHS, isDevelopment) => ({
   plugins: [
     new HtmlWebpackPlugin({
       template: PATHS.app + "/index.html",
-      filename: "index.html",
-      env: {
-        Dev: isDevelopment
-      }
+      filename: "index.html"
     }),
-    new WebappWebpackPlugin({
+    new FaviconsWebpackPlugin({
       logo: PATHS.app + "/img/FustusBunyun_icon.png",
       prefix: ".",
       cache: true,
@@ -181,15 +126,19 @@ exports.buildPage = (PATHS, isDevelopment) => ({
           opengraph: false,
           twitter: false,
           yandex: false,
-          windows: false
-        }
-      }
-    })
-  ]
+          windows: false,
+        },
+      },
+    }),
+  ],
 });
 
-exports.cpNetlify = PATHS => ({
+exports.cpNetlify = (PATHS) => ({
   plugins: [
-    new CopyWebpackPlugin([{ from: PATHS.app + "/netlify", to: PATHS.build }])
-  ]
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: PATHS.app + "/netlify", to: PATHS.build },
+      ]
+    }),
+  ],
 });
