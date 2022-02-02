@@ -1,14 +1,22 @@
 {
-  "name": "webpack5-test",
+  "name": "fustusbunyun",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "the website of Fustus Bunyun Fibre Arts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidpurnell/aatom-webpack.git"
+  },
+  "main": "fustus.js",
   "scripts": {
     "build": "webpack --mode production",
     "serve": "webpack serve --mode development"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "keywords": [],
-  "author": "David Purnell <dave@purnell.io>",
+  "author": "David Purnell <dave@aatom.co>",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
