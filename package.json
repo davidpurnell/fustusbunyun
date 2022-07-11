@@ -4,7 +4,7 @@
   "description": "the website of Fustus Bunyun Fibre Arts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davidpurnell/aatom-webpack.git"
+    "url": "git+https://github.com/davidpurnell/fustusbunyun.git"
   },
   "main": "fustus.js",
   "scripts": {
